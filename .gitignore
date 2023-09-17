@@ -1,0 +1,9 @@
+### Ignore VS CODE PROJECT ###
+/vscode/
+### Executables ###
+*.exe
+### Temps ###
+*~
+*.temp
+#text
+*.txt
