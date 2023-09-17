@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
 
     // Lê as dimensões das matrizes M1 e M2 dos arquivos
     readDimensionsFromFile(filename_M1, &rows_M1, &cols_M1);
-   readDimensionsFromFile(filename_M2, &rows_M2, &cols_M2);
+    readDimensionsFromFile(filename_M2, &rows_M2, &cols_M2);
 
     // Verifica se as matrizes podem ser multiplicadas
     if (cols_M1 != rows_M2) {
@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    fprintf(file_resultado, "%lf\n", elapsed); // Escreve o tempo de cálculo
+    fprintf(file_resultado, "%lf", elapsed); // Escreve o tempo de cálculo
     fclose(file_resultado);
 
     // Libera a memória alocada para as matrizes
