@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <time.h>
 
 // Função para multiplicar duas matrizes
 void multiplyMatrices(int **A, int **B, int **C, int n, int m, int p) {
@@ -84,18 +85,23 @@ int main(int argc, char *argv[]) {
     readMatrixFromFile(filename_M2, M2, &rows_M2, &cols_M2);
 
     struct timeval start, end;
-    gettimeofday(&start, NULL); // Inicia a contagem do tempo
+    // gettimeofday(&start, NULL); // Inicia a contagem do tempo
+    clock_t start_time = clock();
 
     // Multiplica as matrizes M1 e M2
     multiplyMatrices(M1, M2, resultado, rows_M1, cols_M1, cols_M2);
 
-    gettimeofday(&end, NULL); // Finaliza a contagem do tempo
-    long seconds = end.tv_sec - start.tv_sec;
-    long microseconds = end.tv_usec - start.tv_usec;
-    double elapsed = seconds + (microseconds / 1e6);
+    clock_t end_time = clock();
+    double elapsed = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+
+
+    // gettimeofday(&end, NULL); // Finaliza a contagem do tempo
+    // long seconds = end.tv_sec - start.tv_sec;
+    // long microseconds = end.tv_usec - start.tv_usec;
+    // double elapsed = seconds + (microseconds / 1e6);
 
     // Salva o resultado e o tempo de cálculo no arquivo "resultado.txt"
-    FILE *file_resultado = fopen("resultado.txt", "w");
+    FILE *file_resultado = fopen("resultado_sequencial.txt", "w");
     if (file_resultado == NULL) {
         perror("Erro ao abrir o arquivo de resultado");
         return 1;
